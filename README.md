@@ -117,3 +117,16 @@ All outputs are written under `results/`:
 - The FP8 setup here is a **naive casting stress test**, not an optimized FP8 recipe.
 - The study is intentionally limited to one model and a literary-domain English/PT-BR comparison.
 - This repository intentionally excludes personal contact details and author-identifying information in documentation and code.
+
+## 5) Submission information
+
+This work was **submitted to The 17th International Conference on Computational Processing of Portuguese**.
+
+**Article title:** *Lost in Quantization: Activation Outliers Explain Language-Specific FP8 Sensitivity in Llama-3*.
+
+---
+
+## 6) Citation
+
+If you use this code, please cite the paper above (BibTeX entry to be added after publication).
+
