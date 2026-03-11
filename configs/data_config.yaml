@@ -1,0 +1,9 @@
+language: ptbr
+ptbr_url: https://www.gutenberg.org/cache/epub/55752/pg55752.txt
+en_url: https://www.gutenberg.org/cache/epub/2265/pg2265.txt
+cache_dir: quant_linguistics/data/raw
+processed_dir: quant_linguistics/data/processed
+sequence_length: 2048
+max_characters: 200000
+num_chunks: 64
+seed: 42

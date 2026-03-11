@@ -1,0 +1,6 @@
+model_name: meta-llama/Meta-Llama-3-8B
+trust_remote_code: false
+device_map: auto
+use_auth_token: false
+revision: main
+max_memory_gb: 240

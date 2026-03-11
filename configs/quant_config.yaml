@@ -1,0 +1,4 @@
+quantization: bf16
+compute_kl: false
+reference_quantization: bf16
+activation_capture: false
