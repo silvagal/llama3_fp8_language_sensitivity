@@ -22,6 +22,7 @@ The pipeline:
 3. Computes perplexity (and optional KL divergence).
 4. Captures attention activation outliers and generates histograms.
 5. Consolidates outputs into a final report file.
+6. Automatically redacts email-like personal identifiers found in downloaded texts during preprocessing.
 
 ## Main results
 

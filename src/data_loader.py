@@ -5,6 +5,7 @@ import argparse
 import json
 import logging
 import random
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, List, Tuple
@@ -23,6 +24,7 @@ LOGGER = logging.getLogger(__name__)
 
 GUTENBERG_HEADER = "*** START OF THE PROJECT GUTENBERG EBOOK"
 GUTENBERG_FOOTER = "*** END OF THE PROJECT GUTENBERG EBOOK"
+EMAIL_PATTERN = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 
 
 @dataclass(frozen=True)
@@ -117,15 +119,25 @@ def download_text(url: str, destination: Path) -> None:
 def strip_gutenberg(text: str) -> str:
     start_idx = text.find(GUTENBERG_HEADER)
     if start_idx != -1:
-        text = text[start_idx:]
+        start_line_end = text.find("\n", start_idx)
+        if start_line_end != -1:
+            text = text[start_line_end + 1 :]
+        else:
+            text = text[start_idx:]
     end_idx = text.find(GUTENBERG_FOOTER)
     if end_idx != -1:
         text = text[:end_idx]
     return text
 
 
+def redact_personal_info(text: str) -> str:
+    """Redact explicit personal identifiers that may appear in source corpora."""
+    return EMAIL_PATTERN.sub("[REDACTED_EMAIL]", text)
+
+
 def clean_text(text: str) -> str:
     cleaned = strip_gutenberg(text)
+    cleaned = redact_personal_info(cleaned)
     cleaned = cleaned.replace("\r", " ").replace("\n", " ")
     cleaned = " ".join(cleaned.split())
     return cleaned
